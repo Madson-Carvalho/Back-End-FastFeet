@@ -4,7 +4,7 @@ const e = require("express");
 class UsersController {
     async create(request, response) {
         try {
-            const {name, email, cpf, password, perfil, phone} = request.body;
+            const {name, email, cpf, password, perfil, phone, address} = request.body;
 
             const user = await prisma.users.create({
                 data: {
@@ -13,7 +13,8 @@ class UsersController {
                     cpf: cpf,
                     password: password,
                     perfil: perfil,
-                    phone: phone
+                    phone: phone,
+                    address: address
                 }
             })
 
