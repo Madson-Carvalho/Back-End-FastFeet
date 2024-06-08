@@ -21,6 +21,7 @@ model Users {
   password String  @unique
   perfil   Perfil  @default(DELIVERY_MAN)
   phone    String? @db.VarChar(20)
+  address  String? @db.VarChar(100)
 }
 
 enum Perfil {
