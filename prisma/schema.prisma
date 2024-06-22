@@ -24,6 +24,15 @@ model Users {
   address  String? @db.VarChar(100)
 }
 
+model Recipient {
+  id       String  @id @default(uuid())
+  name     String  @db.VarChar(100)
+  cpf      String  @unique @db.VarChar(15)
+  phone    String? @db.VarChar(20)
+  email    String  @db.VarChar(50)
+  address  String? @db.VarChar(100)
+}
+
 enum Perfil {
   ADMIN
   DELIVERY_MAN
