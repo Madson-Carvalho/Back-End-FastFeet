@@ -4,7 +4,7 @@ function authenticateToken(request, response, next) {
     const token = request.header('Authorization')?.split(' ') || [' ', ' '];
     if (!token) return response.status(401).json({error: 'Access denied'});
     try {
-        const decoded = jwt.verify(token[1], env("SECRET_KEY"));
+        const decoded = jwt.verify(token[1], "123");
         request.id = decoded.id;
         next();
     } catch (error) {

@@ -17,7 +17,7 @@ class AuthenticationController {
                 return response.status(401).json({ error: 'User or Password Incorrected' });
             }
 
-            const token = jwt.sign({ id: user.id }, env("SECRET_KEY"), {
+            const token = jwt.sign({ id: user.id }, "123", {
                 expiresIn: '60m',
             });
 
