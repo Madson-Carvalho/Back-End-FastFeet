@@ -26,7 +26,7 @@ class UsersController {
 
     async update(request, response) {
         try {
-            const {name, email, cpf, password, perfil, phone} = request.body;
+            const {name, email, cpf, password, perfil, phone, address} = request.body;
             const {id} = request.params;
 
             const editedUser = await prisma.users.update({
@@ -39,7 +39,8 @@ class UsersController {
                     cpf: cpf,
                     password: password,
                     perfil: perfil,
-                    phone: phone
+                    phone: phone,
+                    address: address
                 }
             })
 
