@@ -37,3 +37,20 @@ enum Perfil {
   ADMIN
   DELIVERY_MAN
 }
+
+model Package {
+  id                      String           @id @default(uuid())
+  deliveryMan             String           @db.VarChar(100)
+  requestDate             DateTime             
+  previusRequestDate      DateTime             
+  deliveryDate            DateTime?            
+  status                  StatusDelivery?
+  deliveryAddress         String           @db.VarChar(100)
+  photo                   String?          @db.VarChar(150)
+}
+
+enum StatusDelivery {
+  AVAILABLE_REMOVE
+  DELIVERED
+  RETURNED
+}
