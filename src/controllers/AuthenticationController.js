@@ -4,12 +4,12 @@ const jwt = require("jsonwebtoken");
 class AuthenticationController {
     async login(request, response) {
         try {
-            const {email, password} = request.body;
+            const {cpf, password} = request.body;
 
             const user = await prisma.users.findUnique({
                 where:{
                     password: password,
-                    email: email,
+                    cpf: cpf,
                 }
             })
 
