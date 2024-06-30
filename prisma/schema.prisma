@@ -14,23 +14,25 @@ datasource db {
 }
 
 model Users {
-  id       String  @id @default(uuid())
-  name     String  @db.VarChar(100)
-  email    String  @db.VarChar(50)
-  cpf      String  @unique @db.VarChar(15)
-  password String  @unique
-  perfil   Perfil  @default(DELIVERY_MAN)
-  phone    String? @db.VarChar(20)
-  address  String? @db.VarChar(100)
+  id       String    @id @default(uuid())
+  name     String    @db.VarChar(100)
+  email    String    @db.VarChar(50)
+  cpf      String    @unique @db.VarChar(15)
+  password String    @unique
+  perfil   Perfil    @default(DELIVERY_MAN)
+  phone    String?   @db.VarChar(20)
+  address  String?   @db.VarChar(100)
+  packages Package[]
 }
 
 model Recipient {
-  id       String  @id @default(uuid())
-  name     String  @db.VarChar(100)
-  cpf      String  @unique @db.VarChar(15)
-  phone    String? @db.VarChar(20)
-  email    String  @db.VarChar(50)
-  address  String? @db.VarChar(100)
+  id       String    @id @default(uuid())
+  name     String    @db.VarChar(100)
+  cpf      String    @unique @db.VarChar(15)
+  phone    String?   @db.VarChar(20)
+  email    String    @db.VarChar(50)
+  address  String?   @db.VarChar(100)
+  packages Package[]
 }
 
 enum Perfil {
@@ -39,14 +41,17 @@ enum Perfil {
 }
 
 model Package {
-  id                      String           @id @default(uuid())
-  deliveryMan             String           @db.VarChar(100)
-  requestDate             DateTime             
-  previusRequestDate      DateTime             
-  deliveryDate            DateTime?            
-  status                  StatusDelivery?
-  deliveryAddress         String           @db.VarChar(100)
-  photo                   String?          @db.VarChar(150)
+  id                 String          @id @default(uuid())
+  requestDate        DateTime
+  previusRequestDate DateTime
+  deliveryDate       DateTime?
+  status             StatusDelivery?
+  deliveryAddress    String          @db.VarChar(100)
+  photo              String?         @db.VarChar(150)
+  Users              Users?          @relation(fields: [usersId], references: [id])
+  usersId            String?
+  Recipient          Recipient?      @relation(fields: [recipientId], references: [id])
+  recipientId        String?
 }
 
 enum StatusDelivery {

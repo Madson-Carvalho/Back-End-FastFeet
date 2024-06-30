@@ -3,17 +3,18 @@ const prisma = require('../utils')
 class PackageController {
     async create(request, response) {
         try {
-            const {deliveryMan, requestDate, previusRequestDate, deliveryDate, status, deliveryAddress, photo} = request.body;
+            const {requestDate, previusRequestDate, deliveryDate, status, deliveryAddress, photo, usersId, recipientId} = request.body;
 
             const packageRegistration = await prisma.package.create({
                 data: {
-                    deliveryMan: deliveryMan,
                     requestDate: requestDate,
                     previusRequestDate: previusRequestDate,
                     deliveryDate: deliveryDate,
                     status: status,
                     deliveryAddress: deliveryAddress,
-                    photo: photo
+                    photo: photo,
+                    usersId: usersId,
+                    recipientId: recipientId
                 }
             })
 
@@ -68,7 +69,12 @@ class PackageController {
 
     async findAll(request, response) {
         try {
-            const packageRegistration = await prisma.package.findMany();
+            const packageRegistration = await prisma.package.findMany({
+                include: {
+                    Users: true,
+                    Recipient: true
+                }
+            });
 
             return response.json(packageRegistration);
         } catch (e) {
