@@ -21,7 +21,12 @@ class AuthenticationController {
                 expiresIn: '60m',
             });
 
-            return response.status(200).json({ token });
+            const userLogado = {
+              perfil: user.perfil,
+              token: token
+            };
+
+            return response.status(200).json({userLogado});
 
         } catch (e) {
             return response.status(409).send();
