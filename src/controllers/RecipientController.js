@@ -87,6 +87,19 @@ class RecipientController {
             return response.status(409).send();
         }
     }
+
+    async countRecipients(request, response) {
+        try {
+            const countRecipients = await prisma.recipient.count();
+
+            return response.json({
+                resource: 'destinatarios',
+                quantity: countRecipients
+            });
+        } catch (e) {
+            return response.status(409).send();
+        }
+    }
 }
 
 module.exports = RecipientController;

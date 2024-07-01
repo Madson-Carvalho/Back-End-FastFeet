@@ -91,6 +91,19 @@ class UsersController {
             return response.status(409).send();
         }
     }
+
+    async countUsers(request, response) {
+        try {
+            const countUsers = await prisma.users.count();
+
+            return response.json({
+                resource: 'entregadores',
+                quantity: countUsers
+            });
+        } catch (e) {
+            return response.status(409).send();
+        }
+    }
 }
 
 module.exports = UsersController;
