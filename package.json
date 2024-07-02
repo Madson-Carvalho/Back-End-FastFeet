@@ -2,7 +2,7 @@
   "name": "back-end-fastfeet",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/routes/index.js",
   "scripts": {
     "start": "pm2-runtime start ecosystem.config.js --env production",
     "dev": "nodemon ./src/server.js",
