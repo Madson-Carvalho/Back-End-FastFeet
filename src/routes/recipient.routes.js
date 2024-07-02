@@ -11,5 +11,6 @@ recipientRoutes.put('/edit/:id', recipientController.update);
 recipientRoutes.delete('/remove/:id', recipientController.delete);
 recipientRoutes.get('/find-all', recipientController.findAll);
 recipientRoutes.get('/find-by-id/:id', recipientController.findById);
+recipientRoutes.get('/count', recipientController.countRecipients);
 
 module.exports = recipientRoutes

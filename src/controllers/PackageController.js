@@ -97,6 +97,19 @@ class PackageController {
             return response.status(409).send();
         }
     }
+
+    async countPackages(request, response) {
+        try {
+            const countPackages = await prisma.package.count();
+
+            return response.json({
+                resource: 'encomendas',
+                quantity: countPackages
+            });
+        } catch (e) {
+            return response.status(409).send();
+        }
+    }
 }
 
 module.exports = PackageController;

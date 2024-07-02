@@ -11,5 +11,6 @@ usersRoutes.put('/edit/:id', usersController.update);
 usersRoutes.delete('/remove/:id', usersController.delete);
 usersRoutes.get('/find-all', usersController.findAll);
 usersRoutes.get('/find-by-id/:id', usersController.findById);
+usersRoutes.get('/count', usersController.countUsers);
 
 module.exports = usersRoutes
