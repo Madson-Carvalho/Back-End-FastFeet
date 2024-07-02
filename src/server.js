@@ -4,7 +4,7 @@ const cors = require("cors");
 require('dotenv/config');
 
 const app = express();
-const allowedOrigins = ['http://localhost:3000'];
+const allowedOrigins = ['http://localhost:3000', 'https://fastfeet-807q.onrender.com'];
 const corsOptions = {
     origin: allowedOrigins,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
