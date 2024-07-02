@@ -104,6 +104,34 @@ class UsersController {
             return response.status(409).send();
         }
     }
+
+    async findAllPackagesUser(request, response) {
+        try {
+            const {id} = request.params;
+
+            const user = await prisma.users.findUnique({
+                where: {
+                    id: id
+                }
+            });
+
+            const users = await prisma.users.findMany({
+                include: {
+                    Users: true
+                }
+            });
+
+            const packages = users.filter()
+
+
+
+
+
+            return response.json(users);
+        } catch (e) {
+            return response.status(409).send();
+        }
+    }
 }
 
 module.exports = UsersController;
