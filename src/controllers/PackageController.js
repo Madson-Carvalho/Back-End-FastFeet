@@ -19,7 +19,7 @@ class PackageController {
             })
 
             return response.json(packageRegistration);
-        } catch (e) { 
+        } catch (e) {
             return response.status(409).send();
         }
     }
@@ -69,7 +69,21 @@ class PackageController {
 
     async findAll(request, response) {
         try {
+            const {id} = request.params;
+
             const packageRegistration = await prisma.package.findMany({
+                where: {
+                    OR: [
+                        {
+                            usersId: id
+                        },
+                        {
+                            Users: {
+                                perfil: "ADMIN"
+                            }
+                        }
+                    ]
+                },
                 include: {
                     Users: true,
                     Recipient: true
